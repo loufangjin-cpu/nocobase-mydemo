@@ -3,6 +3,7 @@ import { Plugin } from '@nocobase/server';
 import { resolve } from 'path';
 import { getAccessible } from './actions/getAccessible';
 
+// 路由入口
 export class UiRoutesStoragePlugin extends Plugin {
   async install() {
     const repository = this.app.db.getRepository('uiRoutes');

@@ -7,15 +7,18 @@ const map2obj = (map: Map<string, string>) => {
 };
 
 export async function checkAction(ctx, next) {
-  const currentRole = ctx.state.currentRole;
-
+  const currentRole = ctx.state.currentRole || 'root' ;
+  // const currentRole = ctx.state.currentRole ;
+  console.log('====================================');
+  console.log('currentRole-role-check', currentRole);
+  console.log('====================================');
+  // ! 写死
   const roleInstance = await ctx.db.getRepository('roles').findOne({
     filter: {
       name: currentRole,
     },
     appends: ['menuUiSchemas'],
   });
-
   if (!roleInstance) {
     throw new Error(`Role ${currentRole} not exists`);
   }
@@ -32,7 +35,6 @@ export async function checkAction(ctx, next) {
     await ctx.app.emitAsync('acl:writeRoleToACL', roleInstance);
     role = ctx.app.acl.getRole(currentRole);
   }
-
   const availableActions = ctx.app.acl.getAvailableActions();
 
   ctx.body = {

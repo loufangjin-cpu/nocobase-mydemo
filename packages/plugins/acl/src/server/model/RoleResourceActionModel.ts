@@ -41,7 +41,9 @@ export class RoleResourceActionModel extends Model {
     }
 
     const availableAction = acl.resolveActionAlias(actionName);
-
+    console.log('====================================');
+    console.log('fields-model', fields);
+    console.log('====================================');
     for (const field of fields) {
       const collectionField = collection.getField(field);
 

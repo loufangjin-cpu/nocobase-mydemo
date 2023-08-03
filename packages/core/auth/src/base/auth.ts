@@ -35,6 +35,7 @@ export class BaseAuth extends Auth {
     return this.ctx.state.currentUser;
   }
 
+  // 检查token , 解密token, 获取唯一值反查数据库
   async check() {
     const token = this.ctx.getBearerToken();
     if (!token) {

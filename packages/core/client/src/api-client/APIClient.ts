@@ -43,6 +43,7 @@ export class APIClient extends APIClientSDK {
     this.axios.interceptors.response.use(
       (response) => response,
       (error) => {
+        console.log('response', error?.response)
         if (this.silence) {
           throw error;
         }

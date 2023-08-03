@@ -533,13 +533,13 @@ export class Repository<TModelAttributes extends {} = any, TCreationAttributes e
       action: 'create',
       underscored: this.collection.options.underscored,
     });
-
     const values = guard.sanitize(options.values || {});
 
     const instance = await this.model.create<any>(values, {
       ...options,
       transaction,
     });
+    console.log('instance?-?', instance)
 
     if (!instance) {
       return;
@@ -811,10 +811,12 @@ export class Repository<TModelAttributes extends {} = any, TCreationAttributes e
   }
 
   protected async getTransaction(options: any, autoGen = false) {
+    console.log('====================================');
+    console.log('options--getTransaction', options);
+    console.log('====================================');
     if (lodash.isPlainObject(options) && options.transaction) {
       return options.transaction;
     }
-
     if (autoGen) {
       return await this.model.sequelize.transaction();
     }

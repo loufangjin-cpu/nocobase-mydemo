@@ -23,7 +23,7 @@ export const PoweredBy = () => {
         }
       `}
     >
-      Powered by <a href={urls[i18n.language] || urls['en-US']}>NocoBase</a>
+      北京首通智城科技创新有限责任公司
     </div>
   );
 };

@@ -124,6 +124,8 @@ export const useSignup = (props?: UseSignupProps) => {
       await api.resource('users').signup({
         values: form.values,
       });
+      console.log('client--2')
+
       message.success(props?.message?.success || t('Sign up successfully, and automatically jump to the sign in page'));
       setTimeout(() => {
         navigate('/signin');

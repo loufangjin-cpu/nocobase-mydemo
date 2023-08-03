@@ -49,6 +49,9 @@ export class AuthPlugin extends Plugin {
       auth: BasicAuth,
     });
     // Register actions
+    console.log('====================================');
+    console.log('authActions-auth', authActions);
+    console.log('====================================');
     Object.entries(authActions).forEach(([action, handler]) =>
       this.app.resourcer.registerAction(`auth:${action}`, handler),
     );

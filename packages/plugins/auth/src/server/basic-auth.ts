@@ -12,10 +12,13 @@ export class BasicAuth extends BaseAuth {
   async validate() {
     const ctx = this.ctx;
     const { uniqueField = 'email', values } = ctx.action.params;
-
+    console.log('====================================');
+    console.log('basic-auth?????-校验');
+    console.log('====================================');
     if (!values[uniqueField]) {
       ctx.throw(400, ctx.t('Please fill in your email address', { ns: namespace }));
     }
+    
     const user = await this.userRepository.findOne({
       where: {
         [uniqueField]: values[uniqueField],
@@ -41,8 +44,13 @@ export class BasicAuth extends BaseAuth {
       ctx.throw(403, ctx.t('Not allowed to sign up', { ns: namespace }));
     }
     const User = ctx.db.getRepository('users');
+    console.log('====================================');
+    console.log('basic-auth?????-注册', User);
+    console.log('====================================');
     const { values } = ctx.action.params;
+    console.log('values--注册', values)
     const user = await User.create({ values });
+    console.log('values--注册-user', user)
     return user;
   }
 

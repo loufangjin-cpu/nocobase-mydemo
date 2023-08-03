@@ -42,6 +42,7 @@ export const useSignup = (props?: UseSignupProps) => {
     async run() {
       await form.submit();
       await api.auth.signUp(form.values, props?.authenticator);
+      console.log('client--1')
       message.success(props?.message?.success || t('Sign up successfully, and automatically jump to the sign in page'));
       setTimeout(() => {
         navigate('/signin');

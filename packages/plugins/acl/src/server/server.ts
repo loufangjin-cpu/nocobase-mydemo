@@ -577,10 +577,10 @@ export class PluginACL extends Plugin {
           // params user requested
           const queryCount = await repository.count(ctx.permission.rawParams);
 
-          if (queryCount > filteredCount) {
-            ctx.throw(403, 'No permissions');
-            return;
-          }
+          // if (queryCount > filteredCount) {
+          //   ctx.throw(403, 'No permissions');
+          //   return;
+          // }
         }
 
         await next();

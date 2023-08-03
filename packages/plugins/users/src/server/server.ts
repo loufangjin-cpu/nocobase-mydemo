@@ -194,6 +194,7 @@ export default class UsersPlugin extends Plugin<UserPluginConfig> {
           throw new Error(ctx.t('Not a valid cellphone number, please re-enter'));
         }
         const User = this.db.getCollection('users');
+        console.log('User-注册', User)
         const exists = await User.model.count({
           where: {
             phone,
@@ -206,6 +207,7 @@ export default class UsersPlugin extends Plugin<UserPluginConfig> {
         return true;
       },
     });
+
 
     verificationPlugin.interceptors.register('users:signup', {
       getReceiver(ctx) {

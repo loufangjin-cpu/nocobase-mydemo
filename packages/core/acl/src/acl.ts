@@ -294,7 +294,7 @@ export class ACL extends EventEmitter {
         return canResult;
       };
 
-      ctx.permission = {
+      ctx.permission = { // 2
         can: ctx.can({ resource: resourceName, action: actionName }),
       };
 
@@ -314,7 +314,7 @@ export class ACL extends EventEmitter {
       return lodash.cloneDeep(can);
     };
 
-    ctx.permission = {
+    ctx.permission = { //1
       can: ctx.can({ resource: resourceName, action: actionName }),
     };
 
@@ -349,9 +349,15 @@ export class ACL extends EventEmitter {
         const { resourceName, actionName } = ctx.action;
 
         const permission = ctx.permission;
-
+        // ! 写死
+        // const  permission =  {
+        //   can: { role: 'root', resource: 'uiSchemas', action: 'getProperties' },
+        //   skip: true
+        // }
         ctx.log?.info && ctx.log.info('ctx permission', permission);
-
+        console.log('====================================');
+        console.log('permission-acl', permission);
+        console.log('====================================');
         if ((!permission.can || typeof permission.can !== 'object') && !permission.skip) {
           ctx.throw(403, 'No permissions');
           return;

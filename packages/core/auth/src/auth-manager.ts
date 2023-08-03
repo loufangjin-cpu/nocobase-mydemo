@@ -103,6 +103,9 @@ export class AuthManager {
       }
       if (authenticator) {
         const user = await ctx.auth.check();
+        console.log('====================================');
+        console.log('user-manager', user);
+        console.log('====================================');
         if (user) {
           ctx.auth.user = user;
         }

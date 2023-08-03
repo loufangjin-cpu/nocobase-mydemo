@@ -24,6 +24,7 @@ export async function signin(ctx: Context, next: Next) {
   return branch(branches, (context) => context.action.params.authenticator ?? 'password')(ctx, () => {
     const user = ctx.state.currentUser.toJSON();
     const token = jwtService.sign({ userId: user.id });
+    console.log('token-users', token)
     ctx.body = {
       user,
       token,
@@ -33,17 +34,23 @@ export async function signin(ctx: Context, next: Next) {
   });
 }
 
+// 退出
 export async function signout(ctx: Context, next: Next) {
   ctx.body = ctx.state.currentUser;
+  console.log('退出')
   await next();
 }
 
+// 注册
+
 export async function signup(ctx: Context, next: Next) {
-  const User = ctx.db.getRepository('users');
-  const { values } = ctx.action.params;
-  const user = await User.create({ values });
-  ctx.body = user;
-  await next();
+  // const User = ctx.db.getRepository('users');
+  // const { values } = ctx.action.params;
+  // console.log('注册')
+
+  // const user = await User.create({ values });
+  // ctx.body = user;
+  // await next();
 }
 
 export async function lostpassword(ctx: Context, next: Next) {

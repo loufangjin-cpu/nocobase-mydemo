@@ -207,8 +207,9 @@ export const InternalAdminLayout = (props: any) => {
                 className={css`
                   padding: 0 16px;
                   object-fit: contain;
-                  width: 100%;
+                  // width: 100%;
                   height: 100%;
+                  padding-left: 50px;
                 `}
                 src={result?.data?.data?.logo?.url}
               />

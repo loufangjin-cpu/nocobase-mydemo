@@ -35,6 +35,9 @@ export const CurrentUserProvider = (props) => {
   if (result.loading) {
     return <Spin />;
   }
+  console.log('====================================');
+  console.log('result', result);
+  console.log('====================================');
   return <CurrentUserContext.Provider value={result}>{props.children}</CurrentUserContext.Provider>;
 };
 
@@ -42,8 +45,8 @@ export const NavigateIfNotSignIn = ({ children }) => {
   const result = useCurrentUserContext();
   const { pathname, search } = useLocation();
   const redirect = `?redirect=${pathname}${search}`;
-  if (!result?.data?.data?.id) {
-    return <Navigate replace to={`/signin${redirect}`} />;
-  }
+  // if (!result?.data?.data?.id) {
+  //   return <Navigate replace to={`/signin${redirect}`} />;
+  // }
   return <>{children}</>;
 };
